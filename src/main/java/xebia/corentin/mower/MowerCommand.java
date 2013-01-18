@@ -1,4 +1,4 @@
-package xebia.mower.corentin;
+package xebia.corentin.mower;
 
 /**
  * Commands to control the mower
@@ -18,5 +18,9 @@ public interface MowerCommand {
 	 * 90 degree right rotation of the mower
 	 */
 	public static final char RIGHT = 'D';
+	/**
+	 * regular expression to check allowed command key
+	 */
+	public static final String ALLOWED_CMD = "[AGD]+";
 	
 }

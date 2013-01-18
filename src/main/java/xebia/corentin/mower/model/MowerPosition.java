@@ -1,4 +1,4 @@
-package xebia.mower.corentin;
+package xebia.corentin.mower.model;
 
 /**
  * Position of the mower in the grass.
@@ -27,25 +27,34 @@ public class MowerPosition {
 	 * Values can be 'N', 'E', 'W' or 'S', corresponding to the cardinal
 	 * direction north, east, west and south.
 	 */
-	private char direction;
-	
+	private char orientation;
+	public static final char NORTH = 'N';
+	public static final char WEST = 'W';
+	public static final char SOUTH = 'S';
+	public static final char EAST = 'E';
+
 	/**
 	 * Create a new position for the mower.
 	 * <P>
-	 * @param x X mower position
-	 * @param y Y mower position
-	 * @param direction mower direction
 	 * 
-	 * @throws IllegalArgumentException see bellow
+	 * @param x
+	 *            X mower position
+	 * @param y
+	 *            Y mower position
+	 * @param direction
+	 *            mower direction
+	 * 
+	 * @throws IllegalArgumentException
+	 *             see bellow
 	 * 
 	 * @see MowerPosition#setX(int)
 	 * @see MowerPosition#setY(int)
-	 * @see MowerPosition#setDirection(char)
+	 * @see MowerPosition#setOrientation(char)
 	 */
 	public MowerPosition(final int x, final int y, final char direction) {
 		setX(x);
 		setY(y);
-		setDirection(direction);
+		setOrientation(direction);
 	}
 
 	/**
@@ -106,8 +115,8 @@ public class MowerPosition {
 	 * 
 	 * @return the mower direction.
 	 */
-	public char getDirection() {
-		return direction;
+	public char getOrientation() {
+		return orientation;
 	}
 
 	/**
@@ -116,13 +125,13 @@ public class MowerPosition {
 	 * Values can be 'N', 'E', 'W' or 'S', corresponding to the cardinal
 	 * direction north, east, west and south.
 	 * 
-	 * @param direction
+	 * @param orientation
 	 *            mower direction
 	 */
-	public void setDirection(char direction) {
-		if (direction == 'N' || direction == 'E' || direction == 'W'
-				|| direction == 'S') {
-			this.direction = direction;
+	public void setOrientation(char orientation) {
+		if (orientation == NORTH || orientation == EAST	 || orientation == WEST
+				|| orientation == SOUTH) {
+			this.orientation = orientation;
 		} else {
 			throw new IllegalArgumentException(
 					"Values can be 'N', 'E', 'W' or 'S', corresponding to the cardinal direction north, east, west and south.");
