@@ -1,10 +1,10 @@
-package xebia.corentin.mower;
+package xebia.corentin.mower.command;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import xebia.corentin.mower.MowerCommand;
+import xebia.corentin.mower.command.MowerCommand;
 
 /**
  * Test case for the MowerCommand class

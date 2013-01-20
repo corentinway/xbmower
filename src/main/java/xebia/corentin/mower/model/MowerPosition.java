@@ -134,7 +134,8 @@ public class MowerPosition {
 			this.orientation = orientation;
 		} else {
 			throw new IllegalArgumentException(
-					"Values can be 'N', 'E', 'W' or 'S', corresponding to the cardinal direction north, east, west and south.");
+					"Values can be 'N', 'E', 'W' or 'S', corresponding to the cardinal direction north, east, west and south."
+					+ " Orientation not allowed: \"" + orientation + "\"");
 		}
 	}
 

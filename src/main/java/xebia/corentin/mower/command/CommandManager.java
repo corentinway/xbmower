@@ -3,7 +3,6 @@ package xebia.corentin.mower.command;
 import java.util.HashMap;
 import java.util.Map;
 
-import xebia.corentin.mower.MowerCommand;
 
 /**
  * store all available commands for the mower.

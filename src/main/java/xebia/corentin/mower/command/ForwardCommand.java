@@ -11,14 +11,21 @@ import xebia.corentin.mower.model.MowerPosition;
  * the mower move forward.
  * <P>
  * <ul>
- * <li>(0, y, S)</li>
- * <li>(height, y, N)</li>
- * <li>(x, 0, W)</li>
- * <li>(x, width, E)</li>
+ * <li>(0, y, W)</li>
+ * <li>(width, y, E)</li>
+ * <li>(x, 0, S)</li>
+ * <li>(x, height, N)</li>
  * </ul>
  * 
  * @author Corentin Jechoux
  * 
+ */
+
+/*
+ * 0 y W
+ * max y E
+ * x 0 S
+ * x mxa N
  */
 public class ForwardCommand implements Command {
 
@@ -76,6 +83,7 @@ public class ForwardCommand implements Command {
 	 */
 	private boolean canMove(final int x, final int y, final char orientation,
 			final Grass grass) {
+		
 		if (x == 0 && orientation == MowerPosition.WEST) {
 			return false;
 		} else if (x == grass.getWidth() && orientation == MowerPosition.EAST) {

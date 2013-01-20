@@ -1,4 +1,4 @@
-package xebia.corentin.mower;
+package xebia.corentin.mower.command;
 
 /**
  * Commands to control the mower
