@@ -7,25 +7,31 @@ import xebia.corentin.mower.model.MowerPosition;
 /**
  * the command move the mower one step forward according to the mower direction.
  * <P>
- * If the mower can not go outside of grass. Here are example the do not make
- * the mower move forward.
+ * The mower can not go outside of grass. If the mower current position is at
+ * the hedge of the grass, then it can not move outside. Here are example the do
+ * not make the mower move forward.
  * <P>
  * <ul>
- * <li>(0, y, W)</li>
- * <li>(width, y, E)</li>
- * <li>(x, 0, S)</li>
- * <li>(x, height, N)</li>
+ * <li><code>(0, y, W)</code></li>
+ * <li><code>(width, y, E)</code></li>
+ * <li><code>(x, 0, S)</code></li>
+ * <li><code>(x, height, N)</code></li>
  * </ul>
+ * <P>
+ * The mower movement follow the rules below:
+ * <UL>
+ * <li>If the mower orientation is <em>south</em>, then the mower will go
+ * <em>down</em></li>
+ * <li>If the mower orientation is <em>north</em>, then the mower will go
+ * <em>up</em></li>
+ * <li>If the mower orientation is <em>west</em>, then the mower will move to
+ * the <em>left</em></li>
+ * <li>If the mower orientation is <em>east</em>, then the mower will move to
+ * the <em>right</em></li>
+ * </UL>
  * 
  * @author Corentin Jechoux
  * 
- */
-
-/*
- * 0 y W
- * max y E
- * x 0 S
- * x mxa N
  */
 public class ForwardCommand implements Command {
 
@@ -33,10 +39,12 @@ public class ForwardCommand implements Command {
 	 * {@inheritDoc}
 	 */
 	public void update(final Mower mower, final Grass grass) {
+		// get the current mower position
 		final MowerPosition position = mower.getCurrentPosition();
-
-		if (canMove(position.getX(), position.getY(), position.getOrientation(),
-				grass)) {
+		// check if the mower can move
+		if (canMove(position.getX(), position.getY(),
+				position.getOrientation(), grass)) {
+			// move one step forward
 			stepForward(position);
 		}
 
@@ -57,9 +65,6 @@ public class ForwardCommand implements Command {
 			position.setX(position.getX() - 1);
 		} else if (position.getOrientation() == MowerPosition.EAST) {
 			position.setX(position.getX() + 1);
-		} else {
-			throw new IllegalArgumentException("bad orientation: "
-					+ position.getOrientation());
 		}
 
 	}
@@ -83,7 +88,7 @@ public class ForwardCommand implements Command {
 	 */
 	private boolean canMove(final int x, final int y, final char orientation,
 			final Grass grass) {
-		
+
 		if (x == 0 && orientation == MowerPosition.WEST) {
 			return false;
 		} else if (x == grass.getWidth() && orientation == MowerPosition.EAST) {

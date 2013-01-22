@@ -36,7 +36,7 @@ public class CommandManager {
 	 *            key to identify the command
 	 * @return
 	 */
-	public Command getCommand(char key) {
+	public Command getCommand(final char key) {
 		return commands.get(key);
 	}
 

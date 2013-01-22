@@ -92,6 +92,8 @@ public class ForwardCommandTestCase {
 		}
 
 	}
+	
+	
 
 	/**
 	 * Assert a mower position.

@@ -13,7 +13,10 @@ import xebia.corentin.mower.model.MowerPosition;
  * 
  */
 public class MowerController {
-
+	/**
+	 * error message: passed as a parameter of an IllegalArgumentException when a command if not found
+	 */
+	private static final String COMMAND_NOT_FOUND = "Command not found with the key: ";
 	/**
 	 * Mower to control
 	 */
@@ -54,8 +57,8 @@ public class MowerController {
 				if (command != null) {
 					command.update(mower, grass);
 				} else {
-					throw new IllegalArgumentException(
-							"Command not found with the key: " + commandKey);
+					throw new IllegalArgumentException(COMMAND_NOT_FOUND
+							+ commandKey);
 				}
 			}
 		}

@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import xebia.corentin.mower.MowerController;
 import xebia.corentin.mower.model.Grass;
 import xebia.corentin.mower.model.Mower;
 import xebia.corentin.mower.model.MowerPosition;
@@ -23,9 +22,9 @@ public class MowerControllerTestCase {
 		grass = new Grass();
 		grass.setHeight(5);
 		grass.setWidth(5);
-		
+
 		controller = new MowerController(mower);
-		
+
 	}
 
 	@Test
@@ -61,7 +60,41 @@ public class MowerControllerTestCase {
 	}
 
 	/**
-	 * assert a mower positino
+	 * test the mower do not move if the command sequence is null.
+	 */
+	@Test
+	public void testNoCommandSequence() {
+		// prerequisite
+		mower.setCurrentPosition(new MowerPosition(3, 3, 'E'));
+
+		// input
+		final String cmds = null;
+
+		// call
+		final MowerPosition lastPos = controller.control(cmds, grass);
+
+		// 5 1 E
+		assertMowerPosition(3, 3, MowerPosition.EAST, lastPos);
+	}
+
+	/**
+	 * test the mower do not move if the command sequence is null.
+	 */
+	@Test(expected=IllegalArgumentException.class)
+	public void testIllegalCommandKey() {
+		// prerequisite
+		mower.setCurrentPosition(new MowerPosition(3, 3, 'E'));
+
+		// input
+		final String cmds = "AGDZAGD";
+
+		// call
+		controller.control(cmds, grass);
+
+	}
+
+	/**
+	 * assert a mower position
 	 * 
 	 * @param x
 	 *            X position on the grass
