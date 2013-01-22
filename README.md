@@ -49,7 +49,7 @@ On attend le résultat suivant (position finale des tondeuses) :
 <pre>
 1 3 N
 5 1 E
-<pre>
+</pre>
 
 
 NB: Les données en entrée peuvent être injectée sous une autre forme qu'un fichier (par exemple un test automatisé).
