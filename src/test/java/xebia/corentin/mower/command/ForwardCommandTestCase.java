@@ -35,8 +35,8 @@ public class ForwardCommandTestCase {
 	@Before
 	public void setup() {
 		grass = new Grass();
-		grass.setWidth(5);
-		grass.setHeight(5);
+		grass.setMaxX(5);
+		grass.setMaxY(5);
 
 		command = new ForwardCommand();
 
@@ -124,7 +124,7 @@ public class ForwardCommandTestCase {
 		final String[] parts = pos.split(" ");
 		final int x = Integer.parseInt(parts[0]);
 		final int y = Integer.parseInt(parts[1]);
-		final char orientation = parts[2].charAt(0);
+		final Character orientation = parts[2].charAt(0);
 
 		return new MowerPosition(x, y, orientation);
 	}

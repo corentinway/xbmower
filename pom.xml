@@ -4,12 +4,43 @@
   <artifactId>mower</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Xebia Mower</name>
-  <description>Xxebia Mower Test</description>
+  <description>Xebia Mower Test</description>
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.codehaus.mojo</groupId>
+  			<artifactId>sonar-maven-plugin</artifactId>
+  			<version>2.0</version>
+  			<configuration></configuration>
+  		</plugin>
+  	</plugins>
+  </build>
   <dependencies>
   	<dependency>
   		<groupId>junit</groupId>
   		<artifactId>junit</artifactId>
   		<version>4.11</version>
+  		<scope>test</scope>
   	</dependency>
+  	<!-- 
+  	<dependency>
+  		<groupId>org.mockito</groupId>
+  		<artifactId>mockito-all</artifactId>
+  		<version>1.9.5</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.powermock</groupId>
+  		<artifactId>powermock-core</artifactId>
+  		<version>1.5</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.powermock</groupId>
+  		<artifactId>powermock-module-junit4</artifactId>
+  		<version>1.5</version>
+  		<scope>test</scope>
+  	</dependency>
+  	 -->
   </dependencies>
 </project>

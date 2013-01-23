@@ -1,11 +1,11 @@
 package xebia.corentin.mower.model;
 
 /**
- * To define the grass on which the mower will run.
+ * Define the grass on which the mower will run.
  * <P>
- * The grass is a square with a <em>width</em> and a <em>height</em>. Its
- * minimum coordinate are (0, 0) corresponding to the bottom left corner. Its
- * maximum coordinate are (width, height) corresponding to the top right corner.
+ * Its minimum coordinate are (0, 0) corresponding to the bottom left corner.
+ * Its maximum coordinate are (X, Y) corresponding to the top right corner
+ * coordinate.
  * 
  * 
  * @author Corentin Jechoux
@@ -13,24 +13,60 @@ package xebia.corentin.mower.model;
  */
 public class Grass {
 
-	private int width;
+	// error messages
+	private static final String NEGATIVE_X_ERROR = "X must be a positive integer";
+	private static final String NEGATIVE_Y_ERROR = "Y must be a positive integer";
+	/**
+	 * maximum X limit (inclusive)
+	 */
+	private int maxX;
+	/**
+	 * maximum Y limit (inclusive)
+	 */
+	private int maxY;
 
-	private int height;
-
-	public int getWidth() {
-		return width;
+	/**
+	 * get the maximum X limit.
+	 * 
+	 * @return x coordinate
+	 */
+	public int getMaxX() {
+		return maxX;
 	}
 
-	public void setWidth(int width) {
-		this.width = width;
+	/**
+	 * Set the maximum X limit.
+	 * 
+	 * @param x
+	 *            positive integer
+	 */
+	public void setMaxX(int x) {
+		if (x < 0) {
+			throw new IllegalArgumentException(NEGATIVE_X_ERROR);
+		}
+		this.maxX = x;
 	}
 
-	public int getHeight() {
-		return height;
+	/**
+	 * Get the maximum Y limit
+	 * 
+	 * @return y positive coordinate
+	 */
+	public int getMaxY() {
+		return maxY;
 	}
 
-	public void setHeight(int height) {
-		this.height = height;
+	/**
+	 * Set the maximum Y limit
+	 * 
+	 * @param y
+	 *            y positive coordinate
+	 */
+	public void setMaxY(int y) {
+		if (y < 0) {
+			throw new IllegalArgumentException(NEGATIVE_Y_ERROR);
+		}
+		this.maxY = y;
 	}
 
 }

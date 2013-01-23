@@ -91,11 +91,11 @@ public class ForwardCommand implements Command {
 
 		if (x == 0 && orientation == MowerPosition.WEST) {
 			return false;
-		} else if (x == grass.getWidth() && orientation == MowerPosition.EAST) {
+		} else if (x == grass.getMaxX() && orientation == MowerPosition.EAST) {
 			return false;
 		} else if (y == 0 && orientation == MowerPosition.SOUTH) {
 			return false;
-		} else if (y == grass.getHeight() && orientation == MowerPosition.NORTH) {
+		} else if (y == grass.getMaxY() && orientation == MowerPosition.NORTH) {
 			return false;
 		} else {
 			return true;

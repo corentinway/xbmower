@@ -1,7 +1,10 @@
 package xebia.corentin.mower.model;
 
 /**
- * a mower
+ * a <em>simple</em> mower.
+ * <P>
+ * It aims to be enrich with more properties other that its current position.
+ * For example: its charging home position.
  * 
  * @author Corentin Jechoux
  * 

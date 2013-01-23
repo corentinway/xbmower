@@ -31,8 +31,8 @@ public class AbstractTurnTestCase {
 		mower.setCurrentPosition(position);
 
 		grass = new Grass();
-		grass.setHeight(5);
-		grass.setWidth(5);
+		grass.setMaxY(5);
+		grass.setMaxX(5);
 
 	}
 

@@ -20,8 +20,8 @@ public class MowerControllerTestCase {
 		mower = new Mower();
 
 		grass = new Grass();
-		grass.setHeight(5);
-		grass.setWidth(5);
+		grass.setMaxY(5);
+		grass.setMaxX(5);
 
 		controller = new MowerController(mower);
 

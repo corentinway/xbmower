@@ -3,3 +3,7 @@
 TU
 	CommandManager
 	Mower
+	
+MAVEN
+	remove mockito
+	remove powermock

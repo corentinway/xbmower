@@ -29,11 +29,30 @@ import xebia.corentin.mower.model.MowerPosition;
  */
 public class FileMowerController {
 
+	/**
+	 * grass defined from the file
+	 */
 	private Grass grass;
-
+	/**
+	 * list of mowers to control
+	 */
 	private List<MowerController> controllers;
-
+	/**
+	 * list of commands. One element has its matching mower in the list
+	 * {@link #controllers}.
+	 */
 	private List<String> commands;
+
+	/**
+	 * minimum number of line the file must have: The minimum requirements is
+	 * one grass definition, one mower definition and one command definition for
+	 * that mower.
+	 */
+	private static final int MINIMUM_LINES = 3;
+	/**
+	 * first line number
+	 */
+	private static final int FIRST_LINE = 1;
 
 	/**
 	 * create the file mower controller
@@ -67,10 +86,10 @@ public class FileMowerController {
 			// line read
 			String line = null;
 			// line number
-			int n = 1;
+			int n = FIRST_LINE;
 
 			while ((line = reader.readLine()) != null) {
-				if (n == 1) {
+				if (n == FIRST_LINE) {
 					parseGrass(line, n);
 				} else if (n % 2 == 0) {
 					parseMower(line, n);
@@ -81,7 +100,7 @@ public class FileMowerController {
 			}
 
 			// check
-			if (n < 3) {
+			if (n < MINIMUM_LINES) {
 				// There must be at least one grass definition, one mower
 				// definition and one command sequence
 				throw new FileFormatMowerException(
@@ -126,8 +145,8 @@ public class FileMowerController {
 		final int height = Integer.parseInt(parts[1]);
 
 		grass = new Grass();
-		grass.setWidth(width);
-		grass.setHeight(height);
+		grass.setMaxX(width);
+		grass.setMaxY(height);
 	}
 
 	/**
@@ -154,7 +173,7 @@ public class FileMowerController {
 		final int y = Integer.parseInt(parts[1]);
 
 		// the Mower must be inside the grass
-		if (x > grass.getWidth() || y > grass.getHeight()) {
+		if (x > grass.getMaxX() || y > grass.getMaxY()) {
 			throw new FileFormatMowerException(
 					"The mower can not be set outside", line, lineNumber);
 		}
