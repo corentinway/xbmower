@@ -56,7 +56,7 @@ public class ForwardCommand implements Command {
 	 * @param position
 	 *            mower's position
 	 */
-	private void stepForward(MowerPosition position) {
+	private void stepForward(final MowerPosition position) {
 		if (position.getOrientation() == MowerPosition.SOUTH) {
 			position.setY(position.getY() - 1);
 		} else if (position.getOrientation() == MowerPosition.NORTH) {

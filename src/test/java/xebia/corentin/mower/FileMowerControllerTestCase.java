@@ -3,6 +3,7 @@ package xebia.corentin.mower;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
+import static xebia.corentin.mower.MowerAssertTools.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -175,13 +176,6 @@ public class FileMowerControllerTestCase {
 		assertMowerPosition(5, 1, 'E', positions.get(1));
 	}
 
-	// FIXME refactoring
-	private void assertMowerPosition(final int x, final int y,
-			final char orientation, final MowerPosition actual) {
 
-		assertEquals(x, actual.getX());
-		assertEquals(y, actual.getY());
-		assertEquals(orientation, actual.getOrientation());
-	}
 
 }

@@ -112,5 +112,5 @@ public class MowerControllerTestCase {
 		assertEquals(y, actual.getY());
 		assertEquals(orientation, actual.getOrientation());
 	}
-
+	
 }

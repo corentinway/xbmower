@@ -1,6 +1,7 @@
 package xebia.corentin.mower.command;
 
-import static org.junit.Assert.assertEquals;
+
+import static xebia.corentin.mower.MowerAssertTools.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -60,7 +61,7 @@ public class ForwardCommandTestCase {
 			command.update(mower, grass);
 
 			// assertion
-			assertPosition(pos, mower.getCurrentPosition());
+			assertMowerPosition(pos, mower.getCurrentPosition());
 
 		}
 
@@ -86,47 +87,59 @@ public class ForwardCommandTestCase {
 			command.update(mower, grass);
 
 			// assertion
-			assertPosition(toPosition(expectedPositions[i]),
+			assertMowerPosition(toPosition(expectedPositions[i]),
 					mower.getCurrentPosition());
 
 		}
 
 	}
-	
-	
+
+
+
+
 
 	/**
-	 * Assert a mower position.
-	 * 
-	 * @param expected
-	 *            expected mower position
-	 * @param actual
-	 *            actual mower position
+	 * test that the mower do not go outside the grass if we feed it with many
+	 * (10 times larger than the grass size) 'step forward' (A) command.
 	 */
-	private void assertPosition(final MowerPosition expected,
-			final MowerPosition actual) {
-		assertEquals(expected.getX(), actual.getX());
-		assertEquals(expected.getY(), actual.getY());
-		assertEquals(expected.getOrientation(), actual.getOrientation());
+	@Test
+	public void testFarAway() {
 
-	}
+		// inputs
+		// --------
+		// mower starting X position
+		final int startX = grass.getMaxX() / 2;
+		// mower starting Y position
+		final int startY = grass.getMaxY() / 2;
+		// mower orientation set
+		final char[] orientations = { 'N', 'S', 'E', 'W' };
+		// maximum number of commands
+		final int maxCmd = Math.max(grass.getMaxX(), grass.getMaxY()) * 10;
 
-	/**
-	 * Transform a string like "1 2 N" into a mower position.
-	 * <P>
-	 * The format is <code>x y orientationChar</code>
-	 * 
-	 * @param pos
-	 *            position string
-	 * @return new mower position
-	 */
-	private MowerPosition toPosition(final String pos) {
-		final String[] parts = pos.split(" ");
-		final int x = Integer.parseInt(parts[0]);
-		final int y = Integer.parseInt(parts[1]);
-		final Character orientation = parts[2].charAt(0);
+		// expected results
+		final MowerPosition[] expecteds = new MowerPosition[4];
+		expecteds[0] = new MowerPosition(startX, grass.getMaxY(), 'N');
+		expecteds[1] = new MowerPosition(startX, 0, 'S');
+		expecteds[2] = new MowerPosition(grass.getMaxX(), startY, 'E');
+		expecteds[3] = new MowerPosition(0, startY, 'W');
 
-		return new MowerPosition(x, y, orientation);
+		for (int i = 0; i < orientations.length; i++) {
+			final MowerPosition start = new MowerPosition(startX, startY,
+					orientations[i]);
+			mower.setCurrentPosition(start);
+
+			// call
+			// ------
+			for (int j = 0; j < maxCmd; j++) {
+				command.update(mower, grass);
+			}
+
+			// assertions
+			// -----------
+			assertMowerPosition(expecteds[i], mower.getCurrentPosition());
+
+		}
+
 	}
 
 }
