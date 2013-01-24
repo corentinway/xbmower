@@ -38,9 +38,17 @@ public class FileFormatMowerException extends Exception {
 	}
 
 	/**
+	 * Use this constructor if the exception apply for all the instruction file.
+	 * @param message
+	 */
+	public FileFormatMowerException(final String message) {
+		this(message, "", 0);
+	}
+
+	/**
 	 * get the line content
 	 * 
-	 * @return
+	 * @return the line content
 	 */
 	public String getLine() {
 		return line;
@@ -49,7 +57,7 @@ public class FileFormatMowerException extends Exception {
 	/**
 	 * get the line number
 	 * 
-	 * @return
+	 * @return the line number
 	 */
 	public int getLineNumber() {
 		return lineNumber;

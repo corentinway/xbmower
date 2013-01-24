@@ -14,7 +14,8 @@ import xebia.corentin.mower.model.MowerPosition;
  */
 public class MowerController {
 	/**
-	 * error message: passed as a parameter of an IllegalArgumentException when a command if not found
+	 * error message: passed as a parameter of an IllegalArgumentException when
+	 * a command if not found
 	 */
 	private static final String COMMAND_NOT_FOUND = "Command not found with the key: ";
 	/**
@@ -38,14 +39,14 @@ public class MowerController {
 	}
 
 	/**
-	 * control this mower on the grass.
+	 * Control this mower on the grass and return the last mower position.
 	 * <P>
 	 * Each character of the command sequence lead to a change of a command
-	 * sequence
+	 * sequence.
 	 * 
 	 * @param commandSequence
 	 * @param grass
-	 * @return
+	 * @return the last mower position.
 	 */
 	public MowerPosition control(final String commandSequence, final Grass grass) {
 		if (commandSequence != null) {

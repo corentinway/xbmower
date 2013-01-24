@@ -30,11 +30,11 @@ public class CommandManager {
 	}
 
 	/**
-	 * return a registred command
+	 * return a registered command
 	 * 
 	 * @param key
 	 *            key to identify the command
-	 * @return
+	 * @return an instance of a mower command
 	 */
 	public Command getCommand(final char key) {
 		return commands.get(key);

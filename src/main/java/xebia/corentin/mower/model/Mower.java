@@ -26,7 +26,7 @@ public class Mower {
 	/**
 	 * Get the current position of the mower
 	 * 
-	 * @return
+	 * @return the current mower position
 	 */
 	public MowerPosition getCurrentPosition() {
 		return currentPosition;

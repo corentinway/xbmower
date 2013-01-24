@@ -20,8 +20,18 @@ import xebia.corentin.mower.model.MowerPosition;
  * Format: <code>X Y</code></LI>
  * <LI>Each even following lines describe the starting mower position. <BR>
  * Format: <code>X Y Orientation</code></LI>
- * <LI>Each odd following lines describe the command sequence. <BR>
+ * <LI>Each odd following lines describe the command sequence for the mower
+ * defined above. <BR>
  * Format: <code>Cmd1Cmd2Cmd3</code></LI>
+ * </UL>
+ * <P>
+ * Here are some constraints:
+ * <UL>
+ * <LI>At least one grass, one mower and one command set must be defined.</LI>
+ * <LI>
+ * The mower must have its starting position inside the grass area.</LI>
+ * <LI>One command sequence must follow a mower starting position.</LI>
+ * <LI>Coordinate must be positive.</LI>
  * </UL>
  * 
  * @author Corentin Jechoux
@@ -29,6 +39,8 @@ import xebia.corentin.mower.model.MowerPosition;
  */
 public class FileMowerController {
 
+	private static final String MOWER_COMMAND_DIFF_ERROR = "The number of mower starting position is not equals to the number of mower's sequence";
+	private static final String NOT_ENOUGHT_DATA_ERROR = "There must be at least one grass definition, one mower definition and one command sequence";
 	/**
 	 * grass defined from the file
 	 */
@@ -103,14 +115,10 @@ public class FileMowerController {
 			if (n < MINIMUM_LINES) {
 				// There must be at least one grass definition, one mower
 				// definition and one command sequence
-				throw new FileFormatMowerException(
-						"There must be at least one grass definition, one mower definition and one command sequence",
-						"", 0);
+				throw new FileFormatMowerException(NOT_ENOUGHT_DATA_ERROR);
 			}
 			if (controllers.size() != commands.size()) {
-				throw new FileFormatMowerException(
-						"The number of mower starting position is not equals to the number of mower's sequence",
-						"", 0);
+				throw new FileFormatMowerException(MOWER_COMMAND_DIFF_ERROR);
 			}
 
 		} finally {
