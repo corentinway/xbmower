@@ -9,10 +9,24 @@ import xebia.corentin.mower.model.Grass;
 import xebia.corentin.mower.model.Mower;
 import xebia.corentin.mower.model.MowerPosition;
 
+/**
+ * Test case for MowerController
+ * 
+ * @author Corentin Jechoux
+ * 
+ */
 public class MowerControllerTestCase {
-
+	/**
+	 * mower to pilote
+	 */
 	private Mower mower;
+	/**
+	 * grass that will host the mower
+	 */
 	private Grass grass;
+	/**
+	 * "brain" that control the mower.
+	 */
 	private MowerController controller;
 
 	@Before
@@ -27,6 +41,15 @@ public class MowerControllerTestCase {
 
 	}
 
+	/**
+	 * Test the mower is reaching the expected position.
+	 * 
+	 * <pre>
+	 * 		starting position: 	1 2 N
+	 * 		commands:			GAGAGAGAA
+	 * 		expected positions:	3 3 E
+	 * </pre>
+	 */
 	@Test
 	public void testMower1() {
 
@@ -39,10 +62,19 @@ public class MowerControllerTestCase {
 		// call
 		final MowerPosition lastPos = controller.control(cmds, grass);
 
-		// 1 3 N
+		// assertions. Expected: 1 3 N
 		assertMowerPosition(1, 3, MowerPosition.NORTH, lastPos);
 	}
 
+	/**
+	 * Test the mower is reaching the expected position.
+	 * 
+	 * <pre>
+	 * 		starting position: 	3 3 E
+	 * 		commands:			AADAADADDA
+	 * 		expected positions:	5 1 E
+	 * </pre>
+	 */
 	@Test
 	public void testMower2() {
 
@@ -55,7 +87,7 @@ public class MowerControllerTestCase {
 		// call
 		final MowerPosition lastPos = controller.control(cmds, grass);
 
-		// 5 1 E
+		// assertions. Expected: 5 1 E
 		assertMowerPosition(5, 1, MowerPosition.EAST, lastPos);
 	}
 
@@ -80,7 +112,7 @@ public class MowerControllerTestCase {
 	/**
 	 * test the mower do not move if the command sequence is null.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testIllegalCommandKey() {
 		// prerequisite
 		mower.setCurrentPosition(new MowerPosition(3, 3, 'E'));
@@ -94,16 +126,16 @@ public class MowerControllerTestCase {
 	}
 
 	/**
-	 * assert a mower position
+	 * assert a mower position.
 	 * 
 	 * @param x
-	 *            X position on the grass
+	 *            expected X position on the grass
 	 * @param y
-	 *            Y position on the grass
+	 *            expected Y position on the grass
 	 * @param orientation
-	 *            mower orientation
+	 *            expected mower orientation
 	 * @param actual
-	 *            position to assert.
+	 *            actual mower position
 	 */
 	private void assertMowerPosition(final int x, final int y,
 			final char orientation, final MowerPosition actual) {
@@ -112,5 +144,5 @@ public class MowerControllerTestCase {
 		assertEquals(y, actual.getY());
 		assertEquals(orientation, actual.getOrientation());
 	}
-	
+
 }

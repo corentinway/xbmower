@@ -26,23 +26,38 @@ import xebia.corentin.mower.model.MowerPosition;
  */
 public class FileMowerControllerTestCase {
 
+	/** well formatted instruction file name */
 	private String instructionFileName;
 
+	/** bad grass format: Y coordinate is invalid */
 	private String instructionFileName_badGrass1;
+	/** bad grass format: more than one space between X and Y coordinate */
 	private String instructionFileName_badGrass2;
 
+	/** bad mower position format: invalid orientation */
 	private String instructionFileName_badMower1;
+	/**
+	 * bad mower position format: more than one space between X and Y coordinate
+	 */
 	private String instructionFileName_badMower2;
+	/** bad mower position format: invalid Y coordinate */
 	private String instructionFileName_badMower3;
 
+	/** bad command string: contains letter that do not match any Command */
 	private String instructionFileName_badCommand;
 
+	/** empty file */
 	private String instructionFileName_badFormat1;
+	/** missing the 1st mower and command definition */
 	private String instructionFileName_badFormat2;
+	/** missing the 1st command definition */
 	private String instructionFileName_badFormat3;
+	/** missing one command definition for a mower */
 	private String instructionFileName_badFormat4;
 
+	/** the mower 1st position (X) is out of the grass */
 	private String instructionFileName_mowerOut1;
+	/** the mower 1st position (Y) is out of the grass */
 	private String instructionFileName_mowerOut2;
 
 	@Before
@@ -137,10 +152,9 @@ public class FileMowerControllerTestCase {
 		/* bad command format */
 		3,
 		/* bad file format */
-		0, 0, 0, 0, 
-		/* mower out of the grass*/
-		2, 2,
-		};
+		0, 0, 0, 0,
+		/* mower out of the grass */
+		2, 2, };
 
 		for (int i = 0; i < filenames.length; i++) {
 
@@ -175,7 +189,5 @@ public class FileMowerControllerTestCase {
 		assertMowerPosition(1, 3, 'N', positions.get(0));
 		assertMowerPosition(5, 1, 'E', positions.get(1));
 	}
-
-
 
 }
